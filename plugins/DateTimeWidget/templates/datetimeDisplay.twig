@@ -1,11 +1,22 @@
-<div class="widgetBody dateTimeWidget">
-    <div>
-        <span class='datetimeLabel'>Current local time</span>
+<div class="widgetBody dateTimeWidgetContainer">
+    <div class="localDatetimeContainer hidden">
+        <span class='datetimeLabel'>Current Local Time</span>
         <div id="localTimeStamp" class='datetimeDate'></div>
     </div>
-    <div>
-        <span class='datetimeLabel'>Current site time</span>
+    <div class="siteDatetimeContainer hidden">
+        <span class='datetimeLabel'>Current Site Time</span>
         <div id="siteTimeStamp" class='datetimeDate'></div>
     </div>
 </div>
+<style>
+    .dateTimeWidgetContainer .datetimeLabel {
+        color: black;
+    }
 
+    .dateTimeWidgetContainer .datetimeDate {
+        margin: 10px auto;
+        font-weight: bold;
+        font-size: 20px;
+        width: fit-content;
+    }
+</style>
