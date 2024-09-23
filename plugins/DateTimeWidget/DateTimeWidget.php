@@ -16,12 +16,17 @@ class DateTimeWidget extends \Piwik\Plugin
 
         return [
             'CronArchive.getArchivingAPIMethodForPlugin' => 'getArchivingAPIMethodForPlugin',
+            'AssetManager.getStylesheetFiles' => 'getStylesheetFiles',
             'AssetManager.getJavaScriptFiles' => 'getJsFiles'
         ];
     }
 
     public function getJsFiles(&$jsFiles) {
         $jsFiles[] = "plugins/DateTimeWidget/javascripts/plugin.js";
+    }
+    
+    public function getStylesheetFiles(&$cssFiles) {
+        $cssFiles[] = "plugins/DateTimeWidget/stylesheets/style.css";
     }
     
     // support archiving just this plugin via core:archive

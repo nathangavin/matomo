@@ -1,0 +1,10 @@
+.datetimeLabel {
+    float: left;
+    color: #bbb;
+}
+
+.datetimeDate {
+    margin: 20px;
+    font-weight: bold;
+    font-size: 20px;
+}
