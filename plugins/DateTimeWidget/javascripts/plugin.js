@@ -11,9 +11,14 @@ window.addEventListener('load', function() {
 });
 
 function updateTime() {
+  const localContainer = document.querySelector('.dateTimeWidgetContainer .localDatetimeContainer');
+  const siteContainer = document.querySelector('.dateTimeWidgetContainer .siteDatetimeContainer');
   const siteTimeStamp = document.querySelector('#siteTimeStamp');
   const localTimeStamp = document.querySelector('#localTimeStamp');
-  if (!(siteTimeStamp || localTimeStamp)) {
+  if (!(siteTimeStamp ||
+        localTimeStamp ||
+        localContainer ||
+        siteContainer)) {
     console.log('doesnt Exist');
     return;
   }
@@ -28,11 +33,15 @@ function updateTime() {
                             (secondsSiteIsAheadOfUTC * 1000);
   const adjustedDate = new Date(adjustedTimeStamp);
 
-  const localDateStr = extractTimeString(currentDate);
-  const siteDateStr = extractTimeString(adjustedDate);
+  if (currentDate.getTime() !== adjustedDate.getTime()) {
+    const siteDateStr = extractTimeString(adjustedDate);
+    siteTimeStamp.innerHTML = siteDateStr;
+    siteContainer.classList.remove('hidden');
+  }
 
+  const localDateStr = extractTimeString(currentDate);
   localTimeStamp.innerHTML = localDateStr;
-  siteTimeStamp.innerHTML = siteDateStr;
+  localContainer.classList.remove('hidden');
 }
 
 function extractTimeString(date) {
