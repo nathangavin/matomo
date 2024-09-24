@@ -1,6 +1,8 @@
 {
     "DateTimeWidget": {
         "Utils": "Utils",
-        "Currentlocaltimeinwebsitestimezone": "Current local time in websites timezone"
+        "Currentlocaltimeinwebsitestimezone": "Current local time in websites timezone",
+        "CurrentLocalTime": "Current Local Time",
+        "CurrentSiteTime": "Current Site Time"
     }
 }

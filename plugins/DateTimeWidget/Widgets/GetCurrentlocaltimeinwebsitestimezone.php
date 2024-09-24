@@ -11,6 +11,7 @@ namespace Piwik\Plugins\DateTimeWidget\Widgets;
 
 use Piwik\Widget\Widget;
 use Piwik\Widget\WidgetConfig;
+use Piwik\Translation\Translator;
 
 /**
  * This class allows you to add your own widget to the Piwik platform. In case you want to remove widgets from another
@@ -20,6 +21,17 @@ use Piwik\Widget\WidgetConfig;
  */
 class GetCurrentlocaltimeinwebsitestimezone extends Widget
 {
+    
+    /**
+     * @var Translator
+     */
+    private $translator;
+
+    public function __construct(Translator $translator)
+    {
+        $this->translator = $translator;
+    }
+
     public static function configure(WidgetConfig $config)
     {
         /**
@@ -71,9 +83,12 @@ class GetCurrentlocaltimeinwebsitestimezone extends Widget
      */
     public function render()
     {
-        // or: return $this->renderTemplate('myViewTemplate', array(...view variables...));
+        $currentLocalTime = $this->translator->translate('DateTimeWidget_CurrentLocalTime');
+        $currentSiteTime = $this->translator->translate('DateTimeWidget_CurrentSiteTime');
         
-        return $this->renderTemplate('datetimeDisplay');
-        //return '<div class="widgetBody">My Widget Text</div>';
+        return $this->renderTemplate('datetimeDisplay', array(
+            'currentLocalTime' => $currentLocalTime,
+            'currentSiteTime' => $currentSiteTime
+        ));
     }
 }
