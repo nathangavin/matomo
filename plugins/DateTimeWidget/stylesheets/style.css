@@ -1,10 +1,10 @@
-.datetimeLabel {
-    float: left;
-    color: #bbb;
+.dateTimeWidgetContainer .datetimeLabel {
+    color: black;
 }
 
-.datetimeDate {
-    margin: 20px;
+.dateTimeWidgetContainer .datetimeDate {
+    margin: 10px auto;
     font-weight: bold;
     font-size: 20px;
+    width: fit-content;
 }
