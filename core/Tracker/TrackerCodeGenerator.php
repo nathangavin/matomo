@@ -313,7 +313,22 @@ class TrackerCodeGenerator
         }
         $options = '';
         if ($mergeSubdomains && !empty($firstHost)) {
-            $options .= '  _paq.push(["setCookieDomain", "*.' . $firstHost . '"]);' . "\n";
+            /**
+             * to correctly generate the wildcard URL for setting the cookie domain,
+             * the subdomain(s) of the firstHost need to be removed. As this is 
+             * not doable without the use of an external resource that maintains
+             * and provides all current TLDs, a compromise of just checking for 
+             * the subdomain "www" was chosen instead, as the description provided
+             * when adding the URLs for a site only provides www as an acceptable
+             * subdomain. More general support can be added later.
+             */
+            $formattedFirstHost = $firstHost;
+            $subDomainToCheck = 'www.';
+            if (str_starts_with($firstHost, $subDomainToCheck)) {
+                $formattedFirstHost = substr($firstHost, strlen($subDomainToCheck));
+            }
+
+            $options .= '  _paq.push(["setCookieDomain", "*.' . $formattedFirstHost . '"]);' . "\n";
         }
         if ($mergeAliasUrls && !empty($websiteHosts)) {
             $urls = '["*.' . implode('","*.', $websiteHosts) . '"]';
